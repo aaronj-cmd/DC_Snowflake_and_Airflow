@@ -26,11 +26,11 @@ with DAG(
         outlets=[Asset("silver_greatest_hits")],
     )
 
-    build_detailed_invoice = SQLExecuteQueryOperator(
-        task_id="build_detailed_invoice",
+    build_detailed_invoices = SQLExecuteQueryOperator(
+        task_id="build_detailed_invoices",
         conn_id="____",
         sql="____.sql",  # Build the invoice using a query in include/sql
-        outlets=[Asset("____")]  # "Outlet" to the silver_detailed_invoice Asset
+        outlets=[Asset("____")]  # "Outlet" to the silver_detailed_invoices Asset
     )
 
     # Execute the Tasks in parallel

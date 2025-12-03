@@ -4,7 +4,7 @@ from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
 with DAG(
     dag_id="SOLUTION_update_gold",
-    schedule=[Asset("silver_greatest_hits"), Asset("silver_detailed_invoice")],
+    schedule=[Asset("silver_greatest_hits"), Asset("silver_detailed_invoices")],
     template_searchpath="include/sql"
 ) as dag:
 

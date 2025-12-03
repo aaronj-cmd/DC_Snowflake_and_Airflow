@@ -42,11 +42,11 @@ with DAG(
         outlets=[Asset("silver_greatest_hits")],
     )
 
-    build_detailed_invoice = SQLExecuteQueryOperator(
-        task_id="build_detailed_invoice",
+    build_detailed_invoices = SQLExecuteQueryOperator(
+        task_id="build_detailed_invoices",
         conn_id="snowflake-retail",
         sql="build_invoice.sql",
-        outlets=[Asset("silver_detailed_invoice")]
+        outlets=[Asset("silver_detailed_invoices")]
     )
 
-    [curate_greatest_hits, build_detailed_invoice]
+    [curate_greatest_hits, build_detailed_invoices]
