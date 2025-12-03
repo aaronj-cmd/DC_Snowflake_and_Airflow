@@ -45,7 +45,7 @@ with DAG(
     build_detailed_invoices = SQLExecuteQueryOperator(
         task_id="build_detailed_invoices",
         conn_id="snowflake-retail",
-        sql="build_invoice.sql",
+        sql="silver_build_detailed_invoice.sql",
         outlets=[Asset("silver_detailed_invoices")]
     )
 
