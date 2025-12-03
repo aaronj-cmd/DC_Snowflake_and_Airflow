@@ -11,6 +11,6 @@ with DAG(
     update_greatest_hits_sales = SQLExecuteQueryOperator(
         task_id="update_greatest_hits_sales",
         conn_id="snowflake-retail",
-        sql="update_greatest_hits_sales.sql",
+        sql="gold_greatest_hits_sales.sql",
         outlets=[Asset("gold_greatest_hits_sales")]
     )
