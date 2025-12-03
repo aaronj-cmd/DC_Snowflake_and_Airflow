@@ -4,13 +4,14 @@ from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
 with DAG(
     dag_id="update_gold",
-    schedule=[Asset("silver_greatest_hits"), Asset("silver_detailed_invoice")],
-    template_searchpath="include/sql"
+    # Trigger when silver_greatest_hits and silver_detailed_invoices Assets are updated
+    schedule=[Asset("____"), Asset("____")],
+    template_searchpath="____"  # Read sql files from include/sql
 ) as dag:
 
     update_greatest_hits_sales = SQLExecuteQueryOperator(
         task_id="update_greatest_hits_sales",
-        conn_id="snowflake-retail",
-        sql="update_greatest_hits_sales.sql",
+        conn_id="____",  # Snowflake connection
+        sql="____.sql",  # Run the correct query from include/sql
         outlets=[Asset("gold_greatest_hits_sales")]
     )

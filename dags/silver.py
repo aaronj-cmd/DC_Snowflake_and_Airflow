@@ -4,23 +4,7 @@ from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from datetime import datetime
 
 # Define your query!
-is_greatest_hits_query: str = """
-    CREATE OR REPLACE VIEW silver_greatest_hits AS (
-        SELECT
-            album.albumid, 
-            album.title AS album_name, 
-            artist.name AS artist_name,
-
-            -- Determine if an album is a "Greatest Hits" album
-            CASE 
-                WHEN album_name ILIKE '%greatest%' THEN TRUE
-                ELSE FALSE
-            END AS is_greatest_hits
-
-        FROM album
-        JOIN artist ON album.artistid = artist.artistid
-    );
-"""
+is_greatest_hits_query: str = """____"""
 
 with DAG(
         dag_id="update_silver",
@@ -29,8 +13,8 @@ with DAG(
             Asset("bronze_album"),
             Asset("bronze_artist"),
             Asset("bronze_invoice"),
-            Asset("bronze_invoice_lines"),
-            Asset("bronze_track")
+            Asset("____"),
+            Asset("____")
         ],
         template_searchpath="include/sql"  # Where to look for SQL queries
 ) as dag:
@@ -44,9 +28,10 @@ with DAG(
 
     build_detailed_invoice = SQLExecuteQueryOperator(
         task_id="build_detailed_invoice",
-        conn_id="snowflake-retail",
-        sql="build_invoice.sql",
-        outlets=[Asset("silver_detailed_invoice")]
+        conn_id="____",
+        sql="____.sql",  # Build the invoice using a query in include/sql
+        outlets=[Asset("____")]  # "Outlet" to the silver_detailed_invoice Asset
     )
 
-    [curate_greatest_hits, build_detailed_invoice]
+    # Execute the Tasks in parallel
+    [None, None]
